@@ -17,7 +17,12 @@ module "s3backend" {
 }
 
 output "s3backend_cofig" {
-  value = "module.s3backend.config"
+  value = {
+    bucket = module.s3backend.config.bucket
+    region = module.s3backend.config.region
+    role_arn = module.s3backend.config.role_arn
+    dynamodb_table = module.s3backend.config.dynamodb_table
+  }
 }
 ```
 
