@@ -1,4 +1,6 @@
-# Terraform Flat Module POC with AWS S3 Backend
+# Terraform AWS S3 Backend Module
+
+Flat module implementation for s3 backend
 
 ![image](https://user-images.githubusercontent.com/55074937/147535173-76bebe21-696e-4f4a-927c-0ff0c68d6bd6.png)
 <p align="center"><b>Detailed architecture diagram showing the four distinct components that make up this module</b></p>
@@ -12,7 +14,7 @@ provider "aws" {
 }
 
 module "s3backend" {
-  source = "git::github.com/crazyoptimist/terraform-flat-module-s3-backend"
+  source = "git::github.com/crazyoptimist/terraform-s3-backend-module"
   namespace = "crazy-team"
 }
 
