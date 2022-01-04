@@ -56,10 +56,23 @@ data "aws_iam_policy_document" "policy_doc" {
     ]
     resources = [aws_dynamodb_table.dynamodb_table.arn]
   }
+
+  statement {
+    actions = [
+      "kms:Decrypt",
+      "kms:GenerateDataKey"
+    ]
+    resources = [aws_kms_key.kms_key.arn]
+  }
 }
 
 resource "aws_iam_policy" "iam_policy" {
   name = "${local.namespace}-tf-policy"
   path = "/"
   policy = data.aws_iam_policy_document.policy_doc.json
+}
+
+resource "aws_iam_role_policy_attachment" "policy_attach" {
+  role = aws_iam_role.iam_role.name
+  policy_arn = aws_iam_policy.iam_policy.arn
 }
